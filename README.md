@@ -245,6 +245,7 @@ maven_analytics/
 ├── packages.yml
 ├── dbt_project.yml
 ├── .env
+├── docs
 └── README.md
 ```
 
