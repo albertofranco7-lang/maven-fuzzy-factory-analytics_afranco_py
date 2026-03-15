@@ -277,6 +277,7 @@ Esto confirma que:
 - todos los modelos se construyeron correctamente
 - todos los tests pasaron
 
+docs/pipeline_architecture.png
 ---
 
 # Documentación del Proyecto
@@ -302,6 +303,7 @@ Esto muestra:
 - documentación de columnas
 - tests asociados
 
+docs/prefect_execution.png
 ---
 
 # Orquestación con Prefect
@@ -341,6 +343,7 @@ Filtros:
 
 Esto permite analizar el desempeño del ecommerce.
 
+docs/dbt_dag.png
 ---
 
 # Resultados
