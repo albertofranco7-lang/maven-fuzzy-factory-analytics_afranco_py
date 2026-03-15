@@ -32,7 +32,7 @@ El flujo de datos sigue el siguiente diseño:
 
 MySQL --> Airbyte --> MotherDuck (DuckDB) --> dbt (staging → marts) --> Prefect (orquestación) --> Metabase (dashboard BI)
 
-
+![Pipeline](docs/pipeline_architecture.png)
 ---
 
 # Modern Data Stack Utilizado
