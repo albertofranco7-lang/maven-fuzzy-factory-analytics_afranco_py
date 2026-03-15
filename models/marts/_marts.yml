@@ -1,0 +1,128 @@
+version: 2
+
+models:
+  - name: dim_products
+    description: "Dimensión de productos utilizada para análisis."
+    columns:
+      - name: product_id
+        description: "Identificador único del producto."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: product_name
+        description: "Nombre del producto."
+        data_tests:
+          - not_null
+
+  - name: fct_orders
+    description: "Tabla de hechos a nivel orden."
+    columns:
+      - name: order_id
+        description: "Identificador único de la orden."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: order_date
+        description: "Fecha de la orden."
+        data_tests:
+          - not_null
+
+      - name: primary_product_id
+        description: "Producto principal de la orden."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_products')
+                field: product_id
+
+      - name: price_usd
+        description: "Revenue bruto de la orden."
+        data_tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              arguments:
+                min_value: 0
+
+      - name: items_purchased
+        description: "Cantidad de ítems comprados."
+        data_tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              arguments:
+                min_value: 1
+
+  - name: fct_website_sessions
+    description: "Tabla de hechos a nivel sesión con información de conversión."
+    columns:
+      - name: website_session_id
+        description: "Identificador único de la sesión."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: session_date
+        description: "Fecha de la sesión."
+        data_tests:
+          - not_null
+
+      - name: utm_source
+        description: "Fuente de adquisición."
+        data_tests:
+          - dbt_expectations.expect_column_distinct_values_to_be_in_set:
+              arguments:
+                value_set: ['gsearch', 'bsearch', 'socialbook', 'direct']
+
+      - name: is_converted_session
+        description: "Indicador de conversión de la sesión."
+
+  - name: mart_channel_performance
+    description: "Mart agregado por canal, campaña y dispositivo."
+    columns:
+      - name: session_date
+        description: "Fecha de sesión."
+      - name: utm_source
+        description: "Canal de adquisición."
+      - name: sessions
+        description: "Cantidad de sesiones."
+      - name: orders
+        description: "Cantidad de órdenes."
+      - name: conversion_rate
+        description: "Tasa de conversión por canal."
+        data_tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              arguments:
+                min_value: 0
+                max_value: 100
+
+  - name: mart_daily_ecommerce
+    description: "Mart diario con sesiones, órdenes, revenue y conversiones."
+    columns:
+      - name: metric_date
+        description: "Fecha métrica diaria."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: total_sessions
+        description: "Total de sesiones del día."
+        data_tests:
+          - not_null
+
+      - name: total_orders
+        description: "Total de órdenes del día."
+        data_tests:
+          - not_null
+
+      - name: revenue_usd
+        description: "Revenue total del día."
+        data_tests:
+          - not_null
+
+      - name: conversion_rate
+        description: "Tasa de conversión diaria."
+        data_tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              arguments:
+                min_value: 0
+                max_value: 100

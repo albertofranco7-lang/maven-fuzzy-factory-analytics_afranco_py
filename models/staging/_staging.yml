@@ -1,0 +1,99 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "Vista staging de órdenes provenientes de la capa raw en MotherDuck."
+    columns:
+      - name: order_id
+        description: "Identificador único de la orden."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: website_session_id
+        description: "Sesión web asociada a la orden."
+        data_tests:
+          - not_null
+
+      - name: user_id
+        description: "Usuario que realizó la orden."
+        data_tests:
+          - not_null
+
+      - name: primary_product_id
+        description: "Producto principal de la orden."
+        data_tests:
+          - not_null
+
+      - name: price_usd
+        description: "Importe total de la orden en USD."
+        data_tests:
+          - not_null
+
+      - name: order_date
+        description: "Fecha de la orden truncada al día."
+
+      - name: order_month
+        description: "Mes de la orden truncado al mes."
+
+  - name: stg_order_items
+    description: "Vista staging de ítems de órdenes."
+    columns:
+      - name: order_item_id
+        description: "Identificador único del ítem de orden."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: order_id
+        description: "Orden a la que pertenece el ítem."
+        data_tests:
+          - not_null
+
+      - name: product_id
+        description: "Producto vendido en el ítem."
+        data_tests:
+          - not_null
+
+      - name: product_name
+        description: "Nombre del producto asociado."
+
+      - name: price_usd
+        description: "Precio del ítem en USD."
+
+      - name: margin_usd
+        description: "Margen del ítem en USD."
+
+  - name: stg_products
+    description: "Vista staging del catálogo de productos."
+    columns:
+      - name: product_id
+        description: "Identificador único del producto."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: product_name
+        description: "Nombre comercial del producto."
+        data_tests:
+          - not_null
+
+  - name: stg_website_sessions
+    description: "Vista staging de sesiones web."
+    columns:
+      - name: website_session_id
+        description: "Identificador único de la sesión."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: user_id
+        description: "Usuario asociado a la sesión."
+        data_tests:
+          - not_null
+
+      - name: utm_source
+        description: "Canal o fuente de adquisición."
+
+      - name: device_type
+        description: "Tipo de dispositivo de la sesión."
