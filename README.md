@@ -248,27 +248,6 @@ maven_analytics/
 └── README.md
 ```
 
-dim_products.sql
-fct_orders.sql
-fct_website_sessions.sql
-mart_channel_performance.sql
-mart_daily_ecommerce.sql
-
-tests/
-
-singular_orders_positive_revenue.sql
-singular_sessions_valid_channel.sql
-
-pipelines/
-
-ecommerce_pipeline.py
-
-packages.yml
-dbt_project.yml
-.env
-README.md
-
-
 ---
 
 # Ejecución del Proyecto
