@@ -28,11 +28,11 @@ El pipeline fue desarrollado como parte de un módulo de la **Maestría en Intel
 # Arquitectura del Pipeline
 
 El flujo de datos sigue el siguiente diseño:
-![Pipeline](docs/pipeline_architecture.png)
+
 
 MySQL --> Airbyte --> MotherDuck (DuckDB) --> dbt (staging → marts) --> Prefect (orquestación) --> Metabase (dashboard BI)
 
---> docs/pipeline_architecture.png
+docs/pipeline_architecture.png
 ---
 
 # Modern Data Stack Utilizado
