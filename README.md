@@ -21,7 +21,7 @@ El objetivo es construir un flujo **end-to-end** que permita:
 - orquestación de pipelines
 - visualización de métricas de negocio
 
-El pipeline fue desarrollado como un módulo de la **Maestría en Inteligencia Artificial y Análisis de Datos - FPUNA**.
+El pipeline fue desarrollado como parte de un módulo de la **Maestría en Inteligencia Artificial y Análisis de Datos - FPUNA**.
 
 ---
 
@@ -29,12 +29,9 @@ El pipeline fue desarrollado como un módulo de la **Maestría en Inteligencia A
 
 El flujo de datos sigue el siguiente diseño:
 
-graph TD
-    A[MySQL] --> B[Airbyte]
-    B --> C[MotherDuck / DuckDB]
-    C --> D[dbt (staging → marts)]
-    D --> E[Prefect (Orquestación)]
-    E --> F[Metabase (Dashboard BI)]
+
+MySQL --> Airbyte --> MotherDuck (DuckDB) --> dbt (staging → marts) --> Prefect (orquestación) --> Metabase (dashboard BI)
+
 
 ---
 
@@ -383,4 +380,4 @@ El pipeline permite:
 # Autor
 
 Alberto Franco  
-IAAD FPUNA
+IAAD FPUNA.
