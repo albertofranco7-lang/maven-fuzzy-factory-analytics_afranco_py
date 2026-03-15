@@ -29,27 +29,12 @@ El pipeline fue desarrollado como un módulo de la **Maestría en Inteligencia A
 
 El flujo de datos sigue el siguiente diseño:
 
-
-MySQL
-│
-▼
-Airbyte
-│
-▼
-MotherDuck (DuckDB)
-│
-▼
-dbt
-(staging → marts)
-│
-▼
-Prefect
-(orquestación)
-│
-▼
-Metabase
-(dashboard BI)
-
+graph TD
+    A[MySQL] --> B[Airbyte]
+    B --> C[MotherDuck / DuckDB]
+    C --> D[dbt (staging → marts)]
+    D --> E[Prefect (Orquestación)]
+    E --> F[Metabase (Dashboard BI)]
 
 ---
 
