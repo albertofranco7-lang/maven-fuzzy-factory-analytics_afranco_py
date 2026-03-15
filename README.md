@@ -21,7 +21,7 @@ El objetivo es construir un flujo **end-to-end** que permita:
 - orquestación de pipelines
 - visualización de métricas de negocio
 
-El pipeline fue desarrollado como parte de la **Maestría en Inteligencia Artificial y Análisis de Datos**.
+El pipeline fue desarrollado como un módulo de la **Maestría en Inteligencia Artificial y Análisis de Datos - FPUNA**.
 
 ---
 
